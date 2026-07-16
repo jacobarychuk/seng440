@@ -1,4 +1,11 @@
-int compute_sad_original(int A[16][16], int B[16][16], int x, int y, int r, int s) {
+int compute_sad_original (
+  int A[240][320], 
+  int B[240][320], 
+  int x, 
+  int y, 
+  int r, 
+  int s
+) {
   int diff, sad = 0;
   int i, j;
 
