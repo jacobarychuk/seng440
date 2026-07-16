@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "sad.h"
 
 void run_testbench (
   int current_frame[240][320],
