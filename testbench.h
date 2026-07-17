@@ -1,3 +1,20 @@
+/*
+Test Images
+
+Reference frame:
+Object top-left corner at (105, 86)
+
+Current frame:
+Object top-left corner at (101, 84)
+
+Expected motion vector is:
+r = 4
+s = 2
+
+When the motion estimation search is implemented, the algorithm
+should identify (r, s) = (4, 2) as the best match.
+*/
+
 #include <stdio.h>
 #include <stdint.h>
 #include "sad.h"
