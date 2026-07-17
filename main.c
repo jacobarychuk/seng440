@@ -1,4 +1,3 @@
-#include "sad.h"
 #include "testbench.h"
 #include <stdint.h>
 #include <stdio.h>
