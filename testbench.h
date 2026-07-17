@@ -23,8 +23,10 @@ void run_testbench (
   uint8_t current_frame[IMAGE_HEIGHT][IMAGE_WIDTH],
   uint8_t reference_frame[IMAGE_HEIGHT][IMAGE_WIDTH]
 ) {
-  int x, y = 0;
-  int r, s = 0;
+  int x = 0;
+  int y = 0;
+  int r = 0;
+  int s = 0;
 
   int result_original = compute_sad_original(current_frame, reference_frame, x, y, r, s);
   printf("Original (Unoptimized) SAD: %d\n", result_original);
