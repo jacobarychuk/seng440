@@ -20,8 +20,8 @@ should identify (r, s) = (4, 2) as the best match.
 #include "sad.h"
 
 void run_testbench (
-  uint8_t current_frame[240][320],
-  uint8_t reference_frame[240][320]
+  uint8_t current_frame[IMAGE_HEIGHT][IMAGE_WIDTH],
+  uint8_t reference_frame[IMAGE_HEIGHT][IMAGE_WIDTH]
 ) {
   int x, y = 0;
   int r, s = 0;
