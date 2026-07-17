@@ -14,7 +14,7 @@ int load_image (
   if (fp == NULL)
     return 0; // Failure
   
-  fread(image, sizeof(uint8_t), 320*240, fp);
+  fread(image, sizeof(uint8_t), IMAGE_WIDTH*IMAGE_HEIGHT, fp);
   fclose(fp);
 
   return 1; // Success
