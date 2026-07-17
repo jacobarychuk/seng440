@@ -1,9 +1,7 @@
+#include "sad.h"
 #include "testbench.h"
 #include <stdint.h>
 #include <stdio.h>
-
-#define IMAGE_WIDTH 320
-#define IMAGE_HEIGHT 240
 
 int load_image (
   const char* filename,
