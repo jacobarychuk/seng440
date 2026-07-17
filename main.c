@@ -1,8 +1,9 @@
 #include "testbench.h"
+#include <stdint.h>
 
 int main () {
-  int current_frame[240][320]; // [number of rows = height][number of columns = width]
-  int reference_frame[240][320];
+  uint8_t current_frame[240][320]; // [number of rows = height][number of columns = width]
+  uint8_t reference_frame[240][320];
 
   /* Need to load in images here */
 
