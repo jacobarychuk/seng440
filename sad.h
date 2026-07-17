@@ -1,6 +1,8 @@
+#include <stdint.h>
+
 int compute_sad_original (
-  int A[240][320], 
-  int B[240][320], 
+  uint8_t A[240][320], 
+  uint8_t B[240][320], 
   int x, 
   int y, 
   int r, 
