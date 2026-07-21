@@ -47,7 +47,7 @@ void run_testbench (
   
   printf(
     "Original implementation: minimum SAD = %d at motion vector (r=%d, s=%d)\n",
-    best_sad_original,,
+    best_sad_original,
     best_r_original,
     best_s_original
   );
