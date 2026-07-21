@@ -32,5 +32,5 @@ void run_testbench (
   printf("Original (Unoptimized) SAD: %d\n", result_original);
 
   int result_new = compute_sad_new(current_frame, reference_frame, x, y, r, s);
-  printf("New (Optimized) SAD: %d\n", result_original);
+  printf("New (Optimized) SAD: %d\n", result_new);
 }
