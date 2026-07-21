@@ -57,4 +57,14 @@ void run_testbench (
     best_r_new,
     best_s_new
   );
+
+  if (
+    best_sad_original == best_sad_new &&
+    best_r_original == best_r_new &&
+    best_s_original == best_s_new
+  ) {
+    printf("\nPASS: The optimized implementation produced the same result as the original implementation."); 
+  } else {
+    printf("\nFAIL: The optimized implementation produced a different result than the original implementation.");
+  }
 }
