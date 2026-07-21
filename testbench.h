@@ -2,10 +2,10 @@
 Test Images
 
 Reference frame:
-Object top-left corner at (105, 86)
+Object top-left corner at (112, 93)
 
 Current frame:
-Object top-left corner at (101, 84)
+Object top-left corner at (108, 91)
 
 Expected motion vector is:
 r = 2
