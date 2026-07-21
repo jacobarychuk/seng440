@@ -6,13 +6,6 @@ Object top-left corner at (112, 93)
 
 Current frame:
 Object top-left corner at (108, 91)
-
-Expected motion vector is:
-r = 2
-s = 4
-
-When the motion estimation search is implemented, the algorithm
-should identify (r, s) = (4, 2) as the best match.
 */
 
 #include <stdio.h>
@@ -23,8 +16,11 @@ void run_testbench (
   uint8_t current_frame[IMAGE_HEIGHT][IMAGE_WIDTH],
   uint8_t reference_frame[IMAGE_HEIGHT][IMAGE_WIDTH]
 ) {
-  int x = 0;
-  int y = 0;
+  // Block from current frame is fixed (chosen near top left of object in current frame)
+  int x = 93;
+  int y = 112;
+
+  // Motion vector (displacement) from the block in current frame to candidate block in reference frame
   int r = 0;
   int s = 0;
 
