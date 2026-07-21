@@ -8,8 +8,8 @@ Current frame:
 Object top-left corner at (101, 84)
 
 Expected motion vector is:
-r = 4
-s = 2
+r = 2
+s = 4
 
 When the motion estimation search is implemented, the algorithm
 should identify (r, s) = (4, 2) as the best match.
