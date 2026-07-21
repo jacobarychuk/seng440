@@ -6,6 +6,11 @@ Object top-left corner at (112, 93)
 
 Current frame:
 Object top-left corner at (108, 91)
+
+The object is the same in both frames for simplicity. Thereforce, a 
+SAD of zero means that when searching for candidate blocks in the 
+reference frame, a block was found that matches the block from the 
+current frame exactly.
 */
 
 #include <stdio.h>
