@@ -2,6 +2,7 @@
 #define SAD_H
 
 #include <stdint.h>
+#include <arm_neon.h>
 
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 240
