@@ -1,5 +1,6 @@
 #include "sad.h"
 
+// The original (unoptimized) implementation of SAD
 int compute_sad_original (
   uint8_t A[IMAGE_HEIGHT][IMAGE_WIDTH], 
   uint8_t B[IMAGE_HEIGHT][IMAGE_WIDTH], 
@@ -27,7 +28,42 @@ int compute_sad_original (
   return sad;
 }
 
+// The new (optimized) implementation of SAD
 int compute_sad_new (
+  uint8_t A[IMAGE_HEIGHT][IMAGE_WIDTH], 
+  uint8_t B[IMAGE_HEIGHT][IMAGE_WIDTH], 
+  int x, 
+  int y, 
+  int r, 
+  int s
+) {
+  int sad = 0;
+  int i;
+
+  for (i=0; i<BLOCK_SIZE; i++) {
+    uint8_t const *a = &A[x+i][y];
+    uint8_t const *b = &B[(x+r)+i][(y+s)];
+
+    // Perform one load of 16 uint8_t from memory into each NEON vector
+    uint8x16_t vector_a = vld1q_u8(a); 
+    uint8x16_t vector_b = vld1q_u8(b);
+
+    // Perform subtraction and absolute-value operation
+    uint8x16_t diff = vabdq_u8(vector_a, vector_b);
+
+    // Reduction
+    uint16x8_t temp1 = vpaddlq_u8(diff);                                     // Adds pairs of adjacent values
+    uint16x4_t temp2 = vpadd_u16(vget_low_u16(temp1), vget_high_u16(temp1)); // Concatenates the two vectors then adds pairs of adjacent values
+    temp2 = vpadd_u16(temp2, temp2);
+    temp2 = vpadd_u16(temp2, temp2);
+    sad += vget_lane_u16(temp2, 0);
+  }
+
+  return sad;
+}
+
+// An implementation of SAD using only vectorization
+int compute_sad_vectorization (
   uint8_t A[IMAGE_HEIGHT][IMAGE_WIDTH], 
   uint8_t B[IMAGE_HEIGHT][IMAGE_WIDTH], 
   int x, 
