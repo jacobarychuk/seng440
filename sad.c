@@ -35,20 +35,26 @@ int compute_sad_new (
   int r, 
   int s
 ) {
-  int diff, sad = 0;
-  int i, j;
+  int sad = 0;
+  int i;
 
   for (i=0; i<BLOCK_SIZE; i++) {
-    for ( j=0; j<BLOCK_SIZE; j++) {
-      diff = A[x+i][y+j] - B[(x+r)+i][(y+s)+j];
-      
-      if (diff < 0) {
-        sad -= diff;
-      }
-      if (diff >= 0) {
-        sad += diff;
-      }
-    }
+    uint8_t const *a = &A[x+i][y];
+    uint8_t const *b = &B[(x+r)+i][(y+s)];
+
+    // Perform one load of 16 uint8_t from memory into each NEON vector
+    uint8x16_t vector_a = vld1q_u8(a); 
+    uint8x16_t vector_b = vld1q_u8(b);
+
+    // Perform subtraction and absolute-value operation
+    uint8x16_t diff = vabdq_u8(vector_a, vector_b);
+
+    // Reduction
+    uint16x8_t temp1 = vpaddlq_u8(diff);                                     // Adds pairs of adjacent values
+    uint16x4_t temp2 = vpadd_u16(vget_low_u16(temp1), vget_high_u16(temp1)); // Concatenates the two vectors then adds pairs of adjacent values
+    temp2 = vpadd_u16(temp2, temp2);
+    temp2 = vpadd_u16(temp2, temp2);
+    sad += vget_lane_u16(temp2, 0);
   }
 
   return sad;
