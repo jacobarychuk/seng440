@@ -16,4 +16,4 @@
 `valgrind --tool=callgrind ./profile_harness`
 
 5. Extract the number of instructions per function call<br>
-`callgrind_annotate callgrind.out.* | grep -E 'compute_sad_original|compute_sad_new'`
+`callgrind_annotate callgrind.out.* | grep compute_sad`
