@@ -1,6 +1,6 @@
 **Compile and run the program with:**
 
-`gcc -mfpu=neon main.c sad.c -o main`
+`gcc -mfpu=neon -O3 main.c sad.c -o main`
 
 `./main`
 
@@ -10,7 +10,7 @@
 
 **To profile the two SAD implementations:**
 1. Compile the profiling harness<br>
-`gcc -mfpu=neon profile_harness.c sad.c -o profile_harness`
+`gcc -mfpu=neon -O3 profile_harness.c sad.c -o profile_harness`
 
 3. Run the profiling harness with Callgrind<br>
 `valgrind --tool=callgrind ./profile_harness`
