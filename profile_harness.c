@@ -38,6 +38,7 @@ int main () {
   int s = 3;
   int sad_original = compute_sad_original(current_frame, reference_frame, x, y, r, s);
   int sad_new = compute_sad_new(current_frame, reference_frame, x, y, r, s);
+  int sad_new = compute_sad_vectorization(current_frame, reference_frame, x, y, r, s);
   
   return 0;
 }
