@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdio.h>
 #include "sad.h"
 
 int load_image (
