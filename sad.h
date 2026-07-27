@@ -38,4 +38,14 @@ int compute_sad_vectorization (
   int s
 );
 
+// An implementation of SAD using only pipelining
+int compute_sad_pipelining (
+  uint8_t A[IMAGE_HEIGHT][IMAGE_WIDTH], 
+  uint8_t B[IMAGE_HEIGHT][IMAGE_WIDTH], 
+  int x, 
+  int y, 
+  int r, 
+  int s
+);
+
 #endif
