@@ -36,9 +36,13 @@ int main () {
   int y = 108;
   int r = 1;
   int s = 3;
-  int sad_original = compute_sad_original(current_frame, reference_frame, x, y, r, s);
-  int sad_new = compute_sad_new(current_frame, reference_frame, x, y, r, s);
-  int sad_vectorization = compute_sad_vectorization(current_frame, reference_frame, x, y, r, s);
+  int result;
+  
+  #if defined(original)
+    result = compute_sad_original(current_frame, reference_frame, x, y, r, s);
+  #elif defined(vectorization)
+    result = compute_sad_vectorization(current_frame, reference_frame, x, y, r, s);
+  #endif
   
   return 0;
 }
