@@ -42,6 +42,8 @@ int main () {
     result = compute_sad_original(current_frame, reference_frame, x, y, r, s);
   #elif defined(vectorization)
     result = compute_sad_vectorization(current_frame, reference_frame, x, y, r, s);
+  #elif defined(pipelining)
+    result = compute_sad_pipelining(current_frame, reference_frame, x, y, r, s);
   #else
   #error "Select one implementation"
   #endif
