@@ -46,3 +46,13 @@ valgrind --tool=callgrind ./profile_harness
 ```bash
 callgrind_annotate callgrind.out.* | grep compute_sad
 ```
+
+5. Run the profiling harness with Cachegrind
+```bash
+valgrind --tool=cachegrind --cache-sim=yes --branch-sim=yes ./profile_harness
+```
+
+6. Extract the cache and branch data
+```bash
+cg_annotate --show=Dr,D1mr,Bc,Bcm --show-percs=no cachegrind.out.* | grep compute_sad
+```
