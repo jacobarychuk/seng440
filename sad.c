@@ -95,3 +95,42 @@ int compute_sad_vectorization (
 
   return sad;
 }
+
+// An implementation of SAD using only pipelining
+int compute_sad_pipelining (
+  uint8_t A[IMAGE_HEIGHT][IMAGE_WIDTH], 
+  uint8_t B[IMAGE_HEIGHT][IMAGE_WIDTH], 
+  int x, 
+  int y, 
+  int r, 
+  int s
+) {
+  int diff, sad = 0;
+  int i, j;
+
+  for (i=0; i<BLOCK_SIZE; i++) {
+    // Loop prologue
+    diff = A[x+i][y+0] - B[(x+r)+i][(y+s)+0];
+    
+    for ( j=0; j<(BLOCK_SIZE-1); j++) {
+      // Loop kernel
+      if (diff < 0) {
+        sad -= diff;
+      }
+      else {
+        sad += diff;
+      }
+      diff = A[x+i][y+j+1] - B[(x+r)+i][(y+s)+j+1];
+    }
+
+    // Loop epilogue
+    if (diff < 0) {
+      sad -= diff;
+    }
+    else {
+      sad += diff;
+    }
+  }
+
+  return sad;
+}
