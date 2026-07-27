@@ -1,19 +1,48 @@
-**Compile and run the program with:**
+# Software Optimization Project
 
-`gcc -mfpu=neon -O3 main.c sad.c -o main`
+This project demonstrates different optimization techniques applied to a sum of absolute differences (SAD) algorithm and analyzes their performance.
 
-`./main`
+## Compile and run the testbench
 
-**To inspect the generated assembly code for the two SAD implementations, stop compilation after generating the assembly code:**
+```bash
+gcc -mfpu=neon -O3 main.c sad.c -o main
+```
 
-`gcc -S sad.c`
+```bash
+./main
+```
 
-**To profile the two SAD implementations:**
-1. Compile the profiling harness<br>
-`gcc -mfpu=neon -O3 profile_harness.c sad.c -o profile_harness`
+## Inspect the generated assembly code for each implementation
 
-3. Run the profiling harness with Callgrind<br>
-`valgrind --tool=callgrind ./profile_harness`
+```bash
+gcc -S sad.c
+```
 
-5. Extract the number of instructions per function call<br>
-`callgrind_annotate callgrind.out.* | grep compute_sad`
+```bash
+cat sad.s
+```
+
+## Profile an implementation
+
+1. Choose a compiler option for the desired SAD implementation
+```bash
+-Doriginal
+```
+```bash
+-Dvectorization
+```
+
+2. Compile the profiling harness (replace `-Doriginal` with chosen compiler option)
+```bash
+gcc -Doriginal -mfpu=neon -O3 profile_harness.c sad.c -o profile_harness
+```
+
+3. Run the profiling harness with Callgrind
+```bash
+valgrind --tool=callgrind ./profile_harness
+```
+
+4. Extract the number of instructions per function call<br>
+```bash
+callgrind_annotate callgrind.out.* | grep compute_sad
+```
