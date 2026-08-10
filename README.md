@@ -15,7 +15,7 @@ gcc -mfpu=neon -O3 main.c sad.c -o main
 ## Inspect the generated assembly code for each implementation
 
 ```bash
-gcc -S sad.c
+gcc -mfpu=neon -O3 -S sad.c
 ```
 
 ```bash
