@@ -56,5 +56,5 @@ valgrind --tool=cachegrind --cache-sim=yes --branch-sim=yes ./profile_harness
 
 6. Extract the cache and branch data
 ```bash
-cg_annotate --show=Dr,D1mr,Bc,Bcm --show-percs=no cachegrind.out.* | grep compute_sad
+cg_annotate --threshold=0 --show=Dr,D1mr,Bc,Bcm --show-percs=no cachegrind.out.* | grep compute_sad
 ```
