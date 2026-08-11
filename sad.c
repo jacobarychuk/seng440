@@ -58,7 +58,7 @@ int compute_sad_new (
   
   // Reduction (pairwise add the lower and upper halves)                              
   uint16x4_t temp = vpadd_u16(vget_low_u16(sum), vget_high_u16(sum));
-  temp = vpadd_u16(temp, temp)
+  temp = vpadd_u16(temp, temp);
   temp = vpadd_u16(temp, temp);
   return vget_lane_u16(temp, 0);
 }
@@ -93,7 +93,7 @@ int compute_sad_vectorization (
   
   // Reduction (pairwise add the lower and upper halves)                              
   uint16x4_t temp = vpadd_u16(vget_low_u16(sum), vget_high_u16(sum));
-  temp = vpadd_u16(temp, temp)
+  temp = vpadd_u16(temp, temp);
   temp = vpadd_u16(temp, temp);
   return vget_lane_u16(temp, 0);
 }
