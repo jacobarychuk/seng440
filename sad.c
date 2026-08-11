@@ -37,29 +37,30 @@ int compute_sad_new (
   int r, 
   int s
 ) {
-  int sad = 0;
   int i;
+  uint16x8_t sum = vdupq_n_u16(0); // Eight 16-bit lanes hold running pairwise sums across all rows
 
   for (i=0; i<BLOCK_SIZE; i++) {
     uint8_t const *a = &A[x+i][y];
     uint8_t const *b = &B[(x+r)+i][(y+s)];
 
-    // Perform one load of 16 uint8_t from memory into each NEON vector
+    // Perform one load of sixteen uint8_t from memory into each vector
     uint8x16_t vector_a = vld1q_u8(a); 
     uint8x16_t vector_b = vld1q_u8(b);
 
     // Perform subtraction and absolute-value operation
     uint8x16_t diff = vabdq_u8(vector_a, vector_b);
 
-    // Reduction
-    uint16x8_t temp1 = vpaddlq_u8(diff);                                     // Adds pairs of adjacent values
-    uint16x4_t temp2 = vpadd_u16(vget_low_u16(temp1), vget_high_u16(temp1)); // Concatenates the two vectors then adds pairs of adjacent values
-    temp2 = vpadd_u16(temp2, temp2);
-    temp2 = vpadd_u16(temp2, temp2);
-    sad += vget_lane_u16(temp2, 0);
+    // Reduce and accumulate
+    uint16x8_t pair_sums = vpaddlq_u8(diff); // Pairwise add the adjacent 8-bit differences and widen each result to 16 bits
+    sum = vaddq_u16(sum, pair_sums);
   }
-
-  return sad;
+  
+  // Reduction (pairwise add the lower and upper halves)                              
+  uint16x4_t temp = vpadd_u16(vget_low_u16(sum), vget_high_u16(sum));
+  temp = vpadd_u16(temp, temp)
+  temp = vpadd_u16(temp, temp);
+  return vget_lane_u16(temp, 0);
 }
 
 // An implementation of SAD using only vectorization
