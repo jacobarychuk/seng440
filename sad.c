@@ -48,7 +48,7 @@ int compute_sad_new (
     uint8x16_t vector_a = vld1q_u8(a); 
     uint8x16_t vector_b = vld1q_u8(b);
 
-    // Perform subtraction and absolute-value operation
+    // Perform subtraction and absolute value operation
     uint8x16_t diff = vabdq_u8(vector_a, vector_b);
 
     // Reduce and accumulate
@@ -83,7 +83,7 @@ int compute_sad_vectorization (
     uint8x16_t vector_a = vld1q_u8(a); 
     uint8x16_t vector_b = vld1q_u8(b);
 
-    // Perform subtraction and absolute-value operation
+    // Perform subtraction and absolute value operation
     uint8x16_t diff = vabdq_u8(vector_a, vector_b);
 
     // Reduce and accumulate
