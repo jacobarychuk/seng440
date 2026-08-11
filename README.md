@@ -3,6 +3,7 @@
 This project demonstrates different optimization techniques applied to a sum of absolute differences (SAD) algorithm and analyzes their performance.
 
 ## Compile and run the testbench
+This performs a correctness check that validates the output of the most optimized implementation against the original implementation to ensure that the computation remained unchanged.
 
 ```bash
 gcc -mfpu=neon -O3 main.c sad.c -o main
@@ -13,6 +14,7 @@ gcc -mfpu=neon -O3 main.c sad.c -o main
 ```
 
 ## Inspect the generated assembly code for each implementation
+This will stop after compilation and output the assembly code for each implementation. This includes the original implementation, the resulting implementations from applying different optimization techniques, and the most optimized implementation.
 
 ```bash
 gcc -mfpu=neon -O3 -S sad.c
