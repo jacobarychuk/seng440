@@ -1,6 +1,6 @@
 #include "sad.h"
 
-// The original (unoptimized) implementation of SAD
+// The baseline implementation of SAD
 int compute_sad_original (
   uint8_t A[IMAGE_HEIGHT][IMAGE_WIDTH], 
   uint8_t B[IMAGE_HEIGHT][IMAGE_WIDTH], 
@@ -28,7 +28,7 @@ int compute_sad_original (
   return sad;
 }
 
-// The new (optimized) implementation of SAD
+// The optimized implementation of SAD
 int compute_sad_new (
   uint8_t A[IMAGE_HEIGHT][IMAGE_WIDTH], 
   uint8_t B[IMAGE_HEIGHT][IMAGE_WIDTH], 
