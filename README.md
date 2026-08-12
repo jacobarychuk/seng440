@@ -33,6 +33,9 @@ cat sad.s
 ```bash
 -Dvectorization
 ```
+```bash
+-Dpipelining
+```
 
 2. Compile the profiling harness (replace `-Doriginal` with chosen compiler option)
 ```bash
