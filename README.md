@@ -47,7 +47,7 @@ gcc -Doriginal -mfpu=neon -O3 profile_harness.c sad.c -o profile_harness
 valgrind --tool=callgrind ./profile_harness
 ```
 
-4. Extract the number of instructions per function call<br>
+4. Extract the number of instructions
 ```bash
 callgrind_annotate callgrind.out.* | grep compute_sad
 ```
@@ -57,7 +57,7 @@ callgrind_annotate callgrind.out.* | grep compute_sad
 valgrind --tool=cachegrind --cache-sim=yes --branch-sim=yes ./profile_harness
 ```
 
-6. Extract the cache and branch data
+6. Extract the number of first-level cache reads and read misses, and the number of conditional branch executions and mispredictions
 ```bash
 cg_annotate --threshold=0 --show=Dr,D1mr,Bc,Bcm --show-percs=no cachegrind.out.* | grep compute_sad
 ```
